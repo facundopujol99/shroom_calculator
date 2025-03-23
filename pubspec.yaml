@@ -20,3 +20,9 @@ flutter:
   
   assets:
     - assets/
+  
+  fonts:
+    - family: Iskoola Pota
+      fonts:
+        - asset: assets/fonts/IskoolaPotaRegular.ttf
+

@@ -7,22 +7,37 @@ class Options {
   CalcState? state;
   CalcDosage? dosage;
 
-  double? enteredWeight;
+  int? enteredWeight;
 
-  static String getNextStep(CalcSteps step) {
+  CalcSteps getNextEmptyStep(){
+    if(gender == null){
+      return CalcSteps.gender;
+    }else if(weight == null){
+      return CalcSteps.weight;
+    }else if(type == null){
+      return CalcSteps.type;
+    }else if(state == null){
+      return CalcSteps.state;
+    }else if(dosage == null){
+      return CalcSteps.dosage;
+    }
+    return CalcSteps.result;
+  }
+
+  static CalcSteps getNextStep(CalcSteps step) {
     switch (step) {
       case CalcSteps.gender:
-        return CalcSteps.weight.value;
+        return CalcSteps.weight;
       case CalcSteps.weight:
-        return CalcSteps.type.value;
+        return CalcSteps.type;
       case CalcSteps.type:
-        return CalcSteps.state.value;
+        return CalcSteps.state;
       case CalcSteps.state:
-        return CalcSteps.dosage.value;
+        return CalcSteps.dosage;
       case CalcSteps.dosage:
-        return CalcSteps.result.value;
+        return CalcSteps.result;
       case CalcSteps.result:
-        return CalcSteps.gender.value;
+        return CalcSteps.gender;
     }
   }
 
