@@ -11,7 +11,6 @@ class WeightPick extends StatefulWidget {
 }
 
 class _WeightPickState extends State<WeightPick> {
-  final TextEditingController _weightController = TextEditingController();
   double? weight;
 
   void _showWeightDialog(String unit) {

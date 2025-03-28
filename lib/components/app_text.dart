@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppText extends StatelessWidget {
   AppText({super.key, required this.text, this.fontsize = 60});
 
@@ -10,34 +11,38 @@ class AppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Text(
-          text,
+        RichText(
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: fontsize,
-            fontWeight: FontWeight.w900,
-            fontFamily: 'Iskoola Pota',
-            letterSpacing: 2,
-            wordSpacing: 2,
-            height: 0.9,
-            foreground:
-                Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 8.0 
-                  ..color = Colors.white,
+          text: TextSpan(
+            text: text,
+            style: TextStyle(
+              fontSize: fontsize,
+              fontWeight: FontWeight.w900,
+              fontFamily: 'Iskoola Pota',
+              letterSpacing: 2,
+              wordSpacing: 2,
+              height: 0.9,
+              foreground:
+                  Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = fontsize / 10
+                    ..color = Colors.white,
+            ),
           ),
         ),
-        Text(
-          text,
+        RichText(
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: fontsize,
-            fontWeight: FontWeight.w900,
-            fontFamily: 'Iskoola Pota',
-            letterSpacing: 2,
-            wordSpacing: 2, 
-            height: 0.9,
-            color: Color(0xFF371B64), 
+          text: TextSpan(
+            text: text,
+            style: TextStyle(
+              fontSize: fontsize,
+              fontWeight: FontWeight.w900,
+              fontFamily: 'Iskoola Pota',
+              letterSpacing: 2,
+              wordSpacing: 2,
+              height: 0.9,
+              color: Color(0xFF371B64),
+            ),
           ),
         ),
       ],

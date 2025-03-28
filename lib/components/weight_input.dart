@@ -48,45 +48,6 @@ class _WeightInputState extends State<WeightInput> {
     );
   }
 
-  Widget _buildWeightUnitButtons() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        SizedBox(
-          width: 150,
-          height: 150,
-          child: TextButton(
-            onPressed: () {
-              weightUnitSelected('kg');
-            },
-            child: Ink(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/weight_kg.png'),
-                ),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 150,
-          height: 150,
-          child: TextButton(
-            onPressed: () {
-              weightUnitSelected('lg');
-            },
-            child: Ink(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/weight_lb.png'),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

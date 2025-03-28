@@ -1,5 +1,3 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:shroom_calculator/components/app_text.dart';
 import 'package:shroom_calculator/components/dosage_pick.dart';
@@ -7,10 +5,10 @@ import 'package:shroom_calculator/components/gender_pick.dart';
 import 'package:shroom_calculator/components/number_button.dart';
 import 'package:shroom_calculator/components/type_pick.dart';
 import 'package:shroom_calculator/components/state_pick.dart';
-import 'package:shroom_calculator/components/weight_input.dart';
 import 'package:shroom_calculator/components/weight_pick.dart';
 import 'package:shroom_calculator/constants/constants.dart' as constants;
 import 'package:shroom_calculator/constants/options.dart';
+import 'package:shroom_calculator/screens/information_screen.dart';
 import 'package:shroom_calculator/screens/result_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -48,35 +46,36 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void navigateToInfo() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => InformationScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
 
-    String imageText = 'genderText';
     String text = '';
 
     Widget content = Text('An error occurred');
 
     if (currentStep == constants.CalcSteps.gender) {
       content = GenderPick(onPressedParent: changeStep);
-      imageText = 'genderText';
       text = 'TU GÉNERO?';
     } else if (currentStep == constants.CalcSteps.weight) {
       content = WeightPick(onPressedParent: changeStep);
-      imageText = 'weightText';
       text = 'TU PESO?';
     } else if (currentStep == constants.CalcSteps.type) {
       content = TypePick(onPressedParent: changeStep);
-      imageText = 'shroomTypeText';
       text = 'HONGOS?\nTRUFAS?';
     } else if (currentStep == constants.CalcSteps.state) {
       content = StatePick(onPressedParent: changeStep);
-      imageText = 'shroomStateText';
       text = 'SECOS?\nFRESCOS?';
     } else if (currentStep == constants.CalcSteps.dosage) {
       content = DosagePick(onPressedParent: changeStep);
       text = 'DOSIS?';
-      imageText = 'dosageText';
     } else if (currentStep == constants.CalcSteps.result) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         await Navigator.push(
@@ -93,6 +92,18 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
+      floatingActionButton: IconButton(
+              icon: const Icon(
+                Icons.info,
+                color: Color.fromARGB(200, 20, 20, 240),
+              ),
+              tooltip: 'Show information',
+              onPressed: () {
+                navigateToInfo();
+              },
+              iconSize: 40,
+            ),
       body: Stack(
         children: [
           Container(
@@ -118,10 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment(0, -0.25),
-            child: AppText(text: text)
-          ),
+          Align(alignment: Alignment(0, -0.25), child: AppText(text: text)),
           Padding(
             padding: EdgeInsets.only(
               bottom: screen.height / 10,
@@ -132,21 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: NumberButtons(onPressedParent: changeStep),
             ),
           ),
-          Center(child: content),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: const Icon(
-                Icons.info,
-                color: Color.fromARGB(200, 20, 20, 240),
-              ),
-              tooltip: 'Show information',
-              onPressed: () {
-                print("Information");
-              },
-              iconSize: 40,
-            ),
-          ),
+          Center(child: content)
         ],
       ),
     );

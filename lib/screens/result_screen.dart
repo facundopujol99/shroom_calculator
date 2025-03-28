@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:shroom_calculator/components/app_text.dart';
 import 'package:shroom_calculator/constants/constants.dart';
 import 'package:shroom_calculator/constants/options.dart';
 import 'package:shroom_calculator/screens/home_screen.dart';
+import 'package:shroom_calculator/screens/information_screen.dart';
 import 'package:shroom_calculator/services/image_service.dart';
 
 class ResultScreen extends StatelessWidget {
@@ -15,7 +15,23 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
 
+    void navigateToInfo() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => InformationScreen()),
+      );
+    }
+
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
+      floatingActionButton: IconButton(
+        icon: const Icon(Icons.info, color: Color.fromARGB(200, 20, 20, 240)),
+        tooltip: 'Show information',
+        onPressed: () {
+          navigateToInfo();
+        },
+        iconSize: 40,
+      ),
       body: Stack(
         children: [
           Container(
@@ -28,31 +44,34 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment(0, -0.75),
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/logo.png'),
-                  fit: BoxFit.contain,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/logo.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Center(
-            child: Stack(
-              children: [
-                AppText(text: "40,5 g", fontsize: 80.0),
-                AppText(text: "Cubernesis"),
-              ],
-            ),
-          ),
-
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
+              Expanded(
+                flex: 2,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom: screen.height / 24),
+                      child: AppText(text: "40,5 g", fontsize: 80.0),
+                    ),
+                    AppText(text: "Cubernesis", fontsize: 80.0),
+                  ],
+                ),
+              ),
               Center(
                 child: Container(
                   decoration: BoxDecoration(
@@ -71,13 +90,17 @@ class ResultScreen extends StatelessWidget {
                             color: const Color.fromARGB(100, 0, 0, 0),
                             spreadRadius: 10,
                             blurRadius: 5,
-                            offset: Offset(1, 2), // Shadow position
+                            offset: Offset(1, 2),
                           ),
                         ],
                       ),
                       iconSize: 75,
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
                       },
                     ),
                   ),
