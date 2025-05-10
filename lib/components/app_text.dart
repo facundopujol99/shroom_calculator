@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class AppText extends StatelessWidget {
-  AppText({super.key, required this.text, this.fontsize = 60});
+  AppText({super.key, required this.text, this.fontsize = 60, this.isUnderlined = false});
 
   String text;
   double fontsize = 60.0;
+  bool isUnderlined;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,9 @@ class AppText extends StatelessWidget {
               letterSpacing: 2,
               wordSpacing: 2,
               height: 0.9,
+              decoration: isUnderlined
+                  ? TextDecoration.underline
+                  : TextDecoration.none,
               foreground:
                   Paint()
                     ..style = PaintingStyle.stroke

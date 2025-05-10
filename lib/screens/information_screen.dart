@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shroom_calculator/components/app_text.dart';
 import 'package:shroom_calculator/screens/home_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InformationScreen extends StatelessWidget {
   const InformationScreen({super.key});
@@ -70,7 +71,16 @@ class InformationScreen extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 1,
-                  child: AppText(fontsize: 20, text: "WWW.PSILOSOFIA.UY"),
+                  child: GestureDetector(
+                    onTap: () async {
+                      final Uri url = Uri.parse('https://www.psilosofia.uy');
+                      await launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
+                    child: AppText(fontsize: 20, text: "WWW.PSILOSOFIA.UY", isUnderlined: true),
+                  ),
                 ),
               ],
             ),

@@ -99,4 +99,45 @@ class Options {
         throw UnimplementedError();
     }
   }
+
+  double calculateShroomDose() {
+    var gender = this.gender?.value.toLowerCase() ?? 'male';
+    var dosageLevel = dosage?.value.toLowerCase() ?? 'medium';
+    var type = this.type?.value.toLowerCase() ?? 'mushroom';
+    var state = this.state?.value.toLowerCase() ?? 'dry';
+    var weightKg = enteredWeight?.toDouble() ?? 70.0;
+    var weightConversion = weight?.value.toLowerCase() == 'kg' ? 1.0 : 0.45359237;
+    weightKg *= weightConversion;
+    
+      // Base dosage (in grams, dry form)
+      final Map<String, Map<String, double>> dosageTable = {
+        'micro': {'mushroom': 0.2, 'truffle': 0.75},
+        'low': {'mushroom': 0.75, 'truffle': 3.0},
+        'medium': {'mushroom': 1.75, 'truffle': 7.0},
+        'high': {'mushroom': 3.5, 'truffle': 12.0},
+      };
+
+      // Safety check
+      if (!dosageTable.containsKey(dosageLevel) ||
+          !dosageTable[dosageLevel]!.containsKey(type)) {
+        throw ArgumentError('Invalid dosage level or type');
+      }
+
+      double baseDose = dosageTable[dosageLevel]![type]!;
+
+      // Adjust for weight (70kg = baseline)
+      double weightFactor = weightKg / 70.0;
+
+      // Optional gender factor
+      double genderFactor = 1.0;
+      if (gender.toLowerCase() == 'female') {
+        genderFactor = 0.95;
+      }
+
+      // Wet vs dry
+      double stateFactor = state.toLowerCase() == 'wet' ? 10.0 : 1.0;
+
+      // Final dosage
+      return baseDose * weightFactor * genderFactor * stateFactor;
+    }
 }

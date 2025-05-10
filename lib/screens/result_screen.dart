@@ -8,12 +8,13 @@ import 'package:shroom_calculator/services/image_service.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key, required this.options});
-
   final Options options;
 
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    
+    var result = options.calculateShroomDose();
 
     void navigateToInfo() {
       Navigator.push(
@@ -66,7 +67,7 @@ class ResultScreen extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.only(bottom: screen.height / 24),
-                      child: AppText(text: "40,5 g", fontsize: 80.0),
+                      child: AppText(text: "${result.toStringAsFixed(1)} g" , fontsize: 80.0),
                     ),
                     AppText(text: "Cubernesis", fontsize: 80.0),
                   ],
@@ -87,7 +88,7 @@ class ResultScreen extends StatelessWidget {
                         color: Color.fromARGB(255, 173, 48, 173),
                         shadows: [
                           BoxShadow(
-                            color: const Color.fromARGB(100, 0, 0, 0),
+                            color: Color.fromARGB(100, 0, 0, 0),
                             spreadRadius: 10,
                             blurRadius: 5,
                             offset: Offset(1, 2),

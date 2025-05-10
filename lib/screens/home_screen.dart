@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     String text = '';
 
-    Widget content = Text('An error occurred');
+    Widget content = AppText(text: "Loading...", fontsize: 30, isUnderlined: true);
 
     if (currentStep == constants.CalcSteps.gender) {
       content = GenderPick(onPressedParent: changeStep);
