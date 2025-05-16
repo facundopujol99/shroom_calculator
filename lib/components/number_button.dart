@@ -4,7 +4,7 @@ import 'package:shroom_calculator/constants/constants.dart';
 class NumberButtons extends StatelessWidget {
   const NumberButtons({super.key, required this.onPressedParent});
   final Function(CalcSteps) onPressedParent;
-
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -12,7 +12,7 @@ class NumberButtons extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-            onPressedParent(CalcSteps.gender  );
+            onPressedParent(CalcSteps.gender);
           },
           child: Ink(
             width: 40,

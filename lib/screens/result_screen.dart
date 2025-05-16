@@ -13,7 +13,7 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
-    
+
     var result = options.calculateShroomDose();
 
     void navigateToInfo() {
@@ -67,44 +67,28 @@ class ResultScreen extends StatelessWidget {
                   children: [
                     Container(
                       margin: EdgeInsets.only(bottom: screen.height / 24),
-                      child: AppText(text: "${result.toStringAsFixed(1)} g" , fontsize: 80.0),
+                      child: AppText(
+                        text: "${result.toStringAsFixed(1)} g",
+                        fontsize: 80.0,
+                      ),
                     ),
                     AppText(text: "Cubernesis", fontsize: 80.0),
                   ],
                 ),
               ),
               Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    color: Color.fromARGB(0, 255, 255, 255),
-                  ),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 20),
                   child: TextButton(
-                    onPressed: () {},
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.replay_rounded,
-                        weight: 10,
-                        color: Color.fromARGB(255, 173, 48, 173),
-                        shadows: [
-                          BoxShadow(
-                            color: Color.fromARGB(100, 0, 0, 0),
-                            spreadRadius: 10,
-                            blurRadius: 5,
-                            offset: Offset(1, 2),
-                          ),
-                        ],
+                        child: AppText(text: "Volver a Calcular", fontsize: 40.0),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen()),
+                          );
+                        },
                       ),
-                      iconSize: 75,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                        );
-                      },
-                    ),
-                  ),
                 ),
               ),
               Padding(
