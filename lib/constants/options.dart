@@ -135,7 +135,7 @@ class Options {
       }
 
       // Wet vs dry
-      double stateFactor = state.toLowerCase() == 'wet' ? 10.0 : 1.0;
+      double stateFactor = state.toLowerCase() == 'drop' ? 10.0 : 1.0;
 
       // Final dosage
       return baseDose * weightFactor * genderFactor * stateFactor;

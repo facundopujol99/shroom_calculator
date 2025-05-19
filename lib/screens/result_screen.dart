@@ -72,7 +72,7 @@ class ResultScreen extends StatelessWidget {
                         fontsize: 80.0,
                       ),
                     ),
-                    AppText(text: "Cubernesis", fontsize: 80.0),
+                    AppText(text: "Cubencis", fontsize: 80.0),
                   ],
                 ),
               ),
