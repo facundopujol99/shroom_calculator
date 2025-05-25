@@ -13,6 +13,17 @@ class WeightPick extends StatefulWidget {
 class _WeightPickState extends State<WeightPick> {
   double? weight;
 
+  void onWeightSelected(weightController, String unit) {
+    if (weightController.text.isEmpty) {
+      return;
+    }
+    Navigator.of(context).pop();
+    widget.onPressedParent(
+      CalcSteps.weight,
+      option: "${weightController.text}-$unit",
+    );
+  }
+
   void _showWeightDialog(String unit) {
     TextEditingController weightController = TextEditingController();
     showDialog(
@@ -53,13 +64,7 @@ class _WeightPickState extends State<WeightPick> {
               child: Text("Cancelar"),
             ),
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                widget.onPressedParent(
-                  CalcSteps.weight,
-                  option: "${weightController.text}-$unit",
-                );
-              },
+              onPressed: () => onWeightSelected(weightController, unit),
               child: Text("OK"),
             ),
           ],
@@ -73,7 +78,7 @@ class _WeightPickState extends State<WeightPick> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: screenHeight / 6),
+      padding: EdgeInsets.only(bottom: screenHeight / 8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

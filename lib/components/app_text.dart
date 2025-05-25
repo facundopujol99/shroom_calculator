@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // ignore: must_be_immutable
 class AppText extends StatelessWidget {
   AppText({super.key, required this.text, this.fontsize = 60, this.isUnderlined = false});
 
   String text;
-  double fontsize = 60.0;
+  double fontsize;
   bool isUnderlined;
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size;
     return Stack(
       children: [
         RichText(
@@ -18,19 +18,19 @@ class AppText extends StatelessWidget {
           text: TextSpan(
             text: text,
             style: TextStyle(
-              fontSize: fontsize,
+              fontSize: (fontsize*2).sp,
               fontWeight: FontWeight.w900,
               fontFamily: 'Iskoola Pota',
               letterSpacing: 2,
               wordSpacing: 2,
               height: 0.9,
               decoration: isUnderlined
-                  ? TextDecoration.underline
+                  ? TextDecoration.underline  
                   : TextDecoration.none,
               foreground:
                   Paint()
                     ..style = PaintingStyle.stroke
-                    ..strokeWidth = fontsize / 10
+                    ..strokeWidth = ((fontsize*2) / 10).sp
                     ..color = Colors.white,
             ),
           ),
@@ -40,7 +40,7 @@ class AppText extends StatelessWidget {
           text: TextSpan(
             text: text,
             style: TextStyle(
-              fontSize: fontsize,
+              fontSize: (fontsize*2).sp,
               fontWeight: FontWeight.w900,
               fontFamily: 'Iskoola Pota',
               letterSpacing: 2,

@@ -80,15 +80,15 @@ class ResultScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 20),
                   child: TextButton(
-                        child: AppText(text: "Volver a Calcular", fontsize: 40.0),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomeScreen()),
-                          );
-                        },
-                      ),
+                    child: AppText(text: "Volver a Calcular", fontsize: 40.0),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                      );
+                    },
+                  ),
                 ),
               ),
               Padding(
@@ -113,10 +113,12 @@ class ResultScreen extends StatelessWidget {
                     SizedBox(
                       width: 75,
                       height: 75,
-                      child: AppText(
-                        text:
-                            "${options.enteredWeight}\n${options.weight?.value.toUpperCase()}",
-                        fontsize: 30.0,
+                      child: Center(
+                        child: AppText(
+                          text:
+                              "${options.enteredWeight}\n${options.weight?.value.toUpperCase()}",
+                          fontsize: 40.0,
+                        ),
                       ),
                     ),
                     Container(

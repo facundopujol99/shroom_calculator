@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Align(
               alignment: Alignment(-1, 0),
-              child: NumberButtons(onPressedParent: changeStep),
+              child: NumberButtons(onPressedParent: changeStep, options: options),
             ),
           ),
           Center(child: content)

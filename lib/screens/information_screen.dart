@@ -56,7 +56,7 @@ class InformationScreen extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: AppText(
-                    fontsize: 16,
+                    fontsize: 24,
                     text:
                         "ESTA CALCULADORA SE UTILIZA PARA\nCALCULAR DOSIS MEDIAS.\nHAY PERSONAS MAS SENSIBLES\nA LAS SUSTANCIAS ACTIVAS QUE OTRAS.\nLOS CALCULOS SON ESTIMACIONES\nY NO SE DEBERIAN TOMAR COMO\nPAUTAS EXACTAS.",
                   ),
@@ -64,7 +64,7 @@ class InformationScreen extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: AppText(
-                    fontsize: 18,
+                    fontsize: 24,
                     text:
                         "POR MÁS INFORMACIÓN\nINVITAMOS A NUESTRO\nLABORATORIO MICOLÓGICO\nVIRTUAL:",
                   ),
@@ -79,7 +79,7 @@ class InformationScreen extends StatelessWidget {
                         mode: LaunchMode.externalApplication,
                       );
                     },
-                    child: AppText(fontsize: 20, text: "WWW.PSILOSOFIA.UY", isUnderlined: true),
+                    child: AppText(fontsize: 30, text: "WWW.PSILOSOFIA.UY", isUnderlined: true),
                   ),
                 ),
               ],

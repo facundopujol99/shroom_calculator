@@ -12,7 +12,7 @@ class DosagePick extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(
-        bottom: screenHeight.height / 12,
+        bottom: screenHeight.height / 16,
         right: screenHeight.width / 4,
       ),
       child: Column(

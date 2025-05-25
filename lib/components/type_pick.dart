@@ -11,7 +11,7 @@ class TypePick extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: screenHeight / 6),
+      padding: EdgeInsets.only(bottom: screenHeight / 8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
