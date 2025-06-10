@@ -112,9 +112,9 @@ class Options {
       // Base dosage (in grams, dry form)
       final Map<String, Map<String, double>> dosageTable = {
         'micro': {'mushroom': 0.2, 'truffle': 0.75},
-        'low': {'mushroom': 0.75, 'truffle': 3.0},
-        'medium': {'mushroom': 1.75, 'truffle': 7.0},
-        'high': {'mushroom': 3.5, 'truffle': 12.0},
+        'low': {'mushroom': 0.9, 'truffle': 3.0},
+        'medium': {'mushroom': 2.00, 'truffle': 7.0},
+        'high': {'mushroom': 3.1, 'truffle': 12.0},
       };
 
       // Safety check

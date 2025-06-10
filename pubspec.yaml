@@ -11,17 +11,31 @@ dependencies:
     sdk: flutter
   url_launcher: ^6.2.5
   flutter_screenutil: ^5.6.1
+  flutter_native_splash: ^2.4.6
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  flutter_launcher_icons: ^0.14.3
 
-flutter_launcher_icons:
+flutter_icons:
   android: true
   ios: true
-  image_path: "assets/menu_icon.png"
+  image_path: "assets/menu_icon_unpadded.png"
+
+flutter_native_splash:
+  color: "#AA66CC"                 # Purple background
+  image: assets/luncher_icon_padded.png      # Transparent PNG logo
+  android: true
+  ios: true
+  android_gravity: center
+  ios_content_mode: scaleAspectFit
+  fullscreen: true
+  android_12:
+    color: "#AA66CC"
+    image: assets/luncher_icon_padded.png
+    icon_background_color: "#AA66CC"
 
 flutter:
   uses-material-design: true
