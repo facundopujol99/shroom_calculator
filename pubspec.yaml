@@ -1,7 +1,7 @@
 name: shroom_calculator
 description: "Calculadora Psilosofia es una aplicación que permite calcular dosis."
 publish_to: 'none'
-version: 0.1.0
+version: 0.1.1+5
 
 environment:
   sdk: ">=3.7.2 <3.8.0"

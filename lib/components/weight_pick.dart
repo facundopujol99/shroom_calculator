@@ -34,6 +34,7 @@ class _WeightPickState extends State<WeightPick> {
           content: TextField(
               controller: weightController,
               maxLength: 3,
+              keyboardType: TextInputType.number,
               textAlign: TextAlign.end,
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly,

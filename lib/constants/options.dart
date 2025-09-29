@@ -9,16 +9,16 @@ class Options {
 
   int? enteredWeight;
 
-  CalcSteps getNextEmptyStep(){
-    if(gender == null){
+  CalcSteps getNextEmptyStep() {
+    if (gender == null) {
       return CalcSteps.gender;
-    }else if(weight == null){
+    } else if (weight == null) {
       return CalcSteps.weight;
-    }else if(type == null){
+    } else if (type == null) {
       return CalcSteps.type;
-    }else if(state == null){
+    } else if (state == null) {
       return CalcSteps.state;
-    }else if(dosage == null){
+    } else if (dosage == null) {
       return CalcSteps.dosage;
     }
     return CalcSteps.result;
@@ -106,38 +106,29 @@ class Options {
     var type = this.type?.value.toLowerCase() ?? 'mushroom';
     var state = this.state?.value.toLowerCase() ?? 'dry';
     var weightKg = enteredWeight?.toDouble() ?? 70.0;
-    var weightConversion = weight?.value.toLowerCase() == 'kg' ? 1.0 : 0.45359237;
+    var weightConversion =
+        weight?.value.toLowerCase() == 'kg' ? 1.0 : 0.45359237;
     weightKg *= weightConversion;
-    
-      // Base dosage (in grams, dry form)
-      final Map<String, Map<String, double>> dosageTable = {
-        'micro': {'mushroom': 0.2, 'truffle': 0.75},
-        'low': {'mushroom': 0.9, 'truffle': 3.0},
-        'medium': {'mushroom': 2.00, 'truffle': 7.0},
-        'high': {'mushroom': 3.1, 'truffle': 12.0},
-      };
 
-      // Safety check
-      if (!dosageTable.containsKey(dosageLevel) ||
-          !dosageTable[dosageLevel]!.containsKey(type)) {
-        throw ArgumentError('Invalid dosage level or type');
-      }
+    const dosageTable = {
+      "mushroom": {
+        "drop": {"micro": 2.7, "low": 11.3, "medium": 27.0, "high": 40.5},
+        "dry": {"micro": 0.3, "low": 1.1, "medium": 2.7, "high": 4.0},
+      },
+      "truffle": {
+        "drop": {"micro": 1.2, "low": 8.5, "medium": 11.7, "high": 19.8},
+        "dry": {"micro": 0.8, "low": 5.6, "medium": 7.6, "high": 12.9},
+      },
+    };
 
-      double baseDose = dosageTable[dosageLevel]![type]!;
+    double referenceDosage = dosageTable[type]![state]![dosageLevel]!;
+    double calculatedDosage = (weightKg / 90.0) * referenceDosage;
 
-      // Adjust for weight (70kg = baseline)
-      double weightFactor = weightKg / 70.0;
-
-      // Optional gender factor
-      double genderFactor = 1.0;
-      if (gender.toLowerCase() == 'female') {
-        genderFactor = 0.95;
-      }
-
-      // Wet vs dry
-      double stateFactor = state.toLowerCase() == 'drop' ? 10.0 : 1.0;
-
-      // Final dosage
-      return baseDose * weightFactor * genderFactor * stateFactor;
+    double genderFactor = 1.0;
+    if (gender.toLowerCase() == 'female') {
+      genderFactor = 0.95;
     }
+
+    return double.parse((calculatedDosage * genderFactor).toStringAsFixed(2));
+  }
 }
